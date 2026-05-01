@@ -29,7 +29,10 @@ Resume:
 """
 
     try:
-        response = model.generate_content(prompt)
+        response = model.generate_content(
+            prompt,
+            generation_config=genai.types.GenerationConfig(temperature=0, candidate_count=1)
+        )
         content = response.text.strip()
         
         # Clean up potential markdown formatting wrapping the JSON

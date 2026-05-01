@@ -34,7 +34,10 @@ Resume:
 """
 
     try:
-        response = await model.generate_content_async(prompt)
+        response = await model.generate_content_async(
+            prompt,
+            generation_config=genai.types.GenerationConfig(temperature=0, candidate_count=1)
+        )
         
         return response.text.strip()
     except Exception as e:

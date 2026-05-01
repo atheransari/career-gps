@@ -43,7 +43,10 @@ Job Description:
 """
 
     try:
-        response = await model.generate_content_async(prompt)
+        response = await model.generate_content_async(
+            prompt,
+            generation_config=genai.types.GenerationConfig(temperature=0, candidate_count=1)
+        )
         content = response.text.strip()
 
         if content.startswith("```json"):
